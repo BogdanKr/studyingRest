@@ -1,5 +1,7 @@
 package com.rest.application.entity;
 
+import java.util.Objects;
+
 public class Conference {
   private long id;
   private String subject;
@@ -33,5 +35,24 @@ public class Conference {
 
   public void setReaderName(String readerName) {
     this.readerName = readerName;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Conference that = (Conference) o;
+    return id == that.id &&
+        Objects.equals(subject, that.subject) &&
+        Objects.equals(readerName, that.readerName);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, subject, readerName);
   }
 }
